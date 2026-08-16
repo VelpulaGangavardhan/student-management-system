@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Student Management System</title>
+
+    <meta name="description"
+          content="A centralized platform to manage students, academics, attendance, examinations, results, and student performance.">
+
+    <link rel="icon" type="image/png" href="/logo.png">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/landing.css">
+</head>
+<body class="landing">
+
+  <!-- ============ NAVBAR ============ -->
+  <nav class="landing-nav">
+    <div class="landing-nav-inner">
+      <a href="#home" class="landing-brand">Smart<span>SMS</span></a>
+
+      <ul class="landing-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#roles">Roles</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+
+      <div class="landing-nav-actions">
+        <a href="login.html" class="landing-btn landing-btn-ghost landing-btn-sm desktop-only" id="nav-login-link">Login</a>
+        <a href="register.html" class="landing-btn landing-btn-primary landing-btn-sm" id="nav-register-link">Create Account</a>
+        <button class="landing-nav-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">&#9776;</button>
+      </div>
+    </div>
+
+    <div class="landing-mobile-menu" id="mobile-menu">
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#roles">Roles</a>
+      <a href="#about">About</a>
+      <div class="mobile-actions">
+        <a href="login.html" class="landing-btn landing-btn-secondary landing-btn-sm" style="flex:1;">Login</a>
+        <a href="register.html" class="landing-btn landing-btn-primary landing-btn-sm" style="flex:1;">Create Account</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="landing-hero" id="home">
+    <div class="landing-eyebrow">Academic Management, Simplified</div>
+    <h1>Smart Student Management System</h1>
+    <p class="hero-subtitle">Empowering Smarter Education Management</p>
+    <p class="hero-description">
+      A centralized platform to manage students, academics, attendance, examinations,
+      results, and student performance.
+    </p>
+    <div class="landing-hero-actions">
+      <a href="#features" class="landing-btn landing-btn-primary" id="get-started-btn">Get Started</a>
+      <a href="login.html" class="landing-btn landing-btn-secondary">Login</a>
+      <a href="register.html" class="landing-btn landing-btn-secondary">Create Student Account</a>
+    </div>
+  </header>
+
+  <!-- ============ STATS ============ -->
+  <section class="landing-stats">
+    <div class="stats-grid reveal" id="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number" id="stat-students">—</div>
+        <div class="stat-caption">Students</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="stat-teachers">—</div>
+        <div class="stat-caption">Teachers</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="stat-departments">—</div>
+        <div class="stat-caption">Departments</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="stat-subjects">—</div>
+        <div class="stat-caption">Subjects</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section id="features">
+    <div class="container">
+      <h2 class="section-title">Everything your institution needs</h2>
+      <p class="section-subtitle">One platform covering the full academic lifecycle, from enrollment to results.</p>
+
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-icon">&#127891;</div>
+          <h3>Student Management</h3>
+          <p>Manage student profiles, academic information, enrollment and student records.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">&#128218;</div>
+          <h3>Academic Management</h3>
+          <p>Manage departments, teachers, subjects, semesters and examinations.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">&#128203;</div>
+          <h3>Attendance Management</h3>
+          <p>Record attendance and automatically calculate attendance percentages.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">&#128202;</div>
+          <h3>Marks &amp; Results</h3>
+          <p>Manage marks, calculate grades, percentages and results.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">&#128200;</div>
+          <h3>Performance Analytics</h3>
+          <p>Analyze CGPA, marks, attendance and identify students who need attention.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">&#128272;</div>
+          <h3>Secure Role-Based Access</h3>
+          <p>Provide separate access for Admin, Teacher and Student.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="landing-how" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">Get started in four simple steps.</p>
+
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <div class="step-number">01</div>
+          <h3>Login or Create Account</h3>
+          <p>Sign in, or create a free student account in minutes.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-number">02</div>
+          <h3>Access Your Dashboard</h3>
+          <p>Land on a dashboard built for your role.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-number">03</div>
+          <h3>Manage Academic Information</h3>
+          <p>Handle students, subjects, marks and attendance.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-number">04</div>
+          <h3>Track Student Performance</h3>
+          <p>Monitor CGPA, attendance and performance trends.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ROLES ============ -->
+  <section id="roles">
+    <div class="container">
+      <h2 class="section-title">Built for every role</h2>
+      <p class="section-subtitle">Each role gets exactly the tools and information they need.</p>
+
+      <div class="roles-grid">
+        <div class="role-card reveal">
+          <div class="role-badge">A</div>
+          <h3>ADMINISTRATOR</h3>
+          <p>Manage students, teachers, departments, subjects, exams and overall system information.</p>
+          <a href="login.html" class="landing-btn landing-btn-primary landing-btn-sm">Admin Login</a>
+        </div>
+        <div class="role-card reveal">
+          <div class="role-badge">T</div>
+          <h3>TEACHER</h3>
+          <p>Manage assigned students, marks and attendance.</p>
+          <a href="login.html" class="landing-btn landing-btn-primary landing-btn-sm">Teacher Login</a>
+        </div>
+        <div class="role-card reveal">
+          <div class="role-badge">S</div>
+          <h3>STUDENT</h3>
+          <p>View profile, marks, attendance, results and performance.</p>
+          <a href="login.html" class="landing-btn landing-btn-primary landing-btn-sm">Student Login</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="landing-about" id="about">
+    <div class="container about-content">
+      <h2 class="section-title">About Smart Student Management System</h2>
+      <p>
+        Smart Student Management System centralizes academic administration for
+        educational institutions - bringing student records, attendance, marks,
+        results, and performance monitoring into a single, secure platform.
+        It helps administrators, teachers, and students stay on the same page,
+        with role-based access that gives everyone exactly the tools they need
+        to manage and track academic progress efficiently.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="landing-cta">
+    <div class="container">
+      <h2>Ready to manage academics smarter?</h2>
+      <p>Start using the Smart Student Management System today.</p>
+      <div class="landing-hero-actions">
+        <a href="login.html" class="landing-btn landing-btn-secondary">Login</a>
+        <a href="register.html" class="landing-btn landing-btn-ghost">Create Student Account</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="landing-footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Smart Student Management System</div>
+        <p class="footer-tagline">Empowering smarter education management.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="register.html">Register</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Smart Student Management System</div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/landing.js"></script>
+</body>
+</html>

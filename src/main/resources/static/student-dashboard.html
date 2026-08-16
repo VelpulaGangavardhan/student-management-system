@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard - SmartSMS</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main">
+      <header class="navbar" id="navbar"></header>
+      <main class="content" id="content">
+
+        <div class="cards-grid" id="stats-grid">
+          <div class="loading-state">Loading dashboard...</div>
+        </div>
+
+        <div class="panel" id="profile-panel" style="display:none;">
+          <div class="panel-header"><h2>My Profile</h2></div>
+          <div class="panel-body">
+            <div class="form-grid" id="profile-body"></div>
+          </div>
+        </div>
+
+        <div class="panel" id="marks-panel" style="display:none;">
+          <div class="panel-header"><h2>Recent Marks</h2></div>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>Subject</th><th>Exam</th><th>Marks</th><th>%</th><th>Grade</th><th>Status</th></tr></thead>
+              <tbody id="marks-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/layout.js"></script>
+  <script>
+    if (guardPage(["STUDENT"])) {
+      renderLayout("dashboard", "My Dashboard");
+      loadStudentDashboard();
+    }
+
+    async function loadStudentDashboard() {
+      const grid = document.getElementById("stats-grid");
+      try {
+        const d = await api.get("/dashboard/student");
+        const perf = d.performance;
+        const att = d.attendance;
+        const result = d.latestResult;
+
+        const statusClass = perf.status === "GOOD" ? "good" : perf.status === "AT_RISK" ? "risk" : "needs";
+
+        grid.innerHTML = `
+          <div class="stat-card"><div class="stat-label">CGPA</div><div class="stat-value">${d.profile.cgpa ?? "-"}</div></div>
+          <div class="stat-card"><div class="stat-label">Attendance</div><div class="stat-value">${att.attendancePercentage.toFixed(1)}%</div></div>
+          <div class="stat-card"><div class="stat-label">Overall Percentage</div><div class="stat-value">${result.overallPercentage.toFixed(1)}%</div></div>
+          <div class="stat-card"><div class="stat-label">Performance Status</div><div class="stat-value"><span class="badge badge-${statusClass}">${perf.status.replace("_"," ")}</span></div></div>
+        `;
+
+        const profilePanel = document.getElementById("profile-panel");
+        profilePanel.style.display = "block";
+        document.getElementById("profile-body").innerHTML = `
+          ${field("Student ID", d.profile.studentId)}
+          ${field("Name", d.profile.name)}
+          ${field("Email", d.profile.email)}
+          ${field("Department", d.profile.departmentName)}
+          ${field("Year / Semester", `${d.profile.year ?? "-"} / ${d.profile.semester ?? "-"}`)}
+          ${field("Status", d.profile.status)}
+        `;
+
+        const marksPanel = document.getElementById("marks-panel");
+        marksPanel.style.display = "block";
+        const body = document.getElementById("marks-body");
+        if (result.subjectResults.length === 0) {
+          body.innerHTML = `<tr><td colspan="6" class="empty-state">No marks recorded yet</td></tr>`;
+        } else {
+          body.innerHTML = result.subjectResults.map(m => `
+            <tr>
+              <td>${escapeHtml(m.subjectName)}</td>
+              <td>${escapeHtml(m.examName)}</td>
+              <td>${m.marksObtained} / ${m.maximumMarks}</td>
+              <td>${m.percentage.toFixed(1)}%</td>
+              <td>${escapeHtml(m.grade)}</td>
+              <td><span class="badge ${m.passed ? "badge-good" : "badge-fail"}">${m.passed ? "Pass" : "Fail"}</span></td>
+            </tr>`).join("");
+        }
+      } catch (err) {
+        grid.innerHTML = `<div class="empty-state">Could not load dashboard: ${escapeHtml(err.message)}</div>`;
+      }
+    }
+
+    function field(label, value) {
+      return `<div class="form-group"><label>${label}</label><div>${escapeHtml(value ?? "-")}</div></div>`;
+    }
+  </script>
+</body>
+</html>

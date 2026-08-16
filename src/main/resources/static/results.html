@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results - SmartSMS</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main">
+      <header class="navbar" id="navbar"></header>
+      <main class="content" id="content">
+
+        <div class="panel" id="lookup-panel">
+          <div class="panel-header">
+            <h2>Student Result Lookup</h2>
+            <div class="toolbar">
+              <select id="lookup-student"><option value="">Select a student...</option></select>
+              <button class="btn btn-secondary" id="load-btn">Load Result</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="cards-grid" id="stats-grid" style="display:none;"></div>
+
+        <div class="panel" id="subjects-panel" style="display:none;">
+          <div class="panel-header"><h2>Subject-wise Results</h2></div>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>Subject</th><th>Exam</th><th>Marks</th><th>%</th><th>Grade</th><th>Status</th></tr></thead>
+              <tbody id="marks-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel" id="performance-panel" style="display:none;">
+          <div class="panel-header"><h2>Performance Analysis</h2></div>
+          <div class="panel-body" id="performance-body"></div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/results.js"></script>
+</body>
+</html>

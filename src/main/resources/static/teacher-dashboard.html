@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Dashboard - SmartSMS</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main">
+      <header class="navbar" id="navbar"></header>
+      <main class="content" id="content">
+
+        <div class="cards-grid" id="stats-grid">
+          <div class="loading-state">Loading dashboard...</div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header"><h2>My assigned subjects</h2></div>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>Code</th><th>Name</th><th>Credits</th><th>Semester</th><th>Department</th></tr></thead>
+              <tbody id="subjects-body"><tr><td colspan="5" class="loading-state">Loading...</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/layout.js"></script>
+  <script>
+    if (guardPage(["TEACHER"])) {
+      renderLayout("dashboard", "Teacher Dashboard");
+      loadTeacherDashboard();
+    }
+
+    async function loadTeacherDashboard() {
+      const grid = document.getElementById("stats-grid");
+      const body = document.getElementById("subjects-body");
+      try {
+        const d = await api.get("/dashboard/teacher");
+        grid.innerHTML = `
+          <div class="stat-card"><div class="stat-label">Welcome</div><div class="stat-value" style="font-size:18px;">${escapeHtml(d.teacherName)}</div></div>
+          <div class="stat-card"><div class="stat-label">Assigned Subjects</div><div class="stat-value">${d.assignedSubjects.length}</div></div>
+          <div class="stat-card"><div class="stat-label">Students Taught</div><div class="stat-value">${d.totalStudentsTaught}</div></div>
+          <div class="stat-card accent-warning"><div class="stat-label">Pending Marks Entries</div><div class="stat-value">${d.pendingMarksEntries}</div></div>
+        `;
+
+        if (d.assignedSubjects.length === 0) {
+          body.innerHTML = `<tr><td colspan="5" class="empty-state">No subjects assigned yet</td></tr>`;
+        } else {
+          body.innerHTML = d.assignedSubjects.map(s => `
+            <tr>
+              <td>${escapeHtml(s.code)}</td>
+              <td>${escapeHtml(s.name)}</td>
+              <td>${s.credits ?? "-"}</td>
+              <td>${s.semester ?? "-"}</td>
+              <td>${escapeHtml(s.departmentName || "-")}</td>
+            </tr>`).join("");
+        }
+      } catch (err) {
+        grid.innerHTML = `<div class="empty-state">Could not load dashboard: ${escapeHtml(err.message)}</div>`;
+        body.innerHTML = "";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exams - SmartSMS</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main">
+      <header class="navbar" id="navbar"></header>
+      <main class="content" id="content">
+
+        <div class="panel">
+          <div class="panel-header">
+            <h2>Exams</h2>
+            <div class="toolbar">
+              <select id="filter-semester">
+                <option value="">All semesters</option>
+                <option value="1">Semester 1</option><option value="2">Semester 2</option>
+                <option value="3">Semester 3</option><option value="4">Semester 4</option>
+                <option value="5">Semester 5</option><option value="6">Semester 6</option>
+                <option value="7">Semester 7</option><option value="8">Semester 8</option>
+              </select>
+              <button class="btn btn-primary" id="add-btn">+ Add Exam</button>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>Name</th><th>Type</th><th>Date</th><th>Semester</th><th>Academic Year</th><th></th></tr></thead>
+              <tbody id="items-body"><tr><td colspan="6" class="loading-state">Loading...</td></tr></tbody>
+            </table>
+          </div>
+          <div class="pagination" id="pagination"></div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="item-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="item-modal-title">Add Exam</h3>
+        <button class="modal-close" onclick="closeModal('item-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="item-form">
+          <input type="hidden" id="item-id">
+          <div class="form-grid">
+            <div class="form-group full"><label>Exam Name</label><input type="text" id="f-examName" required></div>
+            <div class="form-group"><label>Exam Type</label>
+              <select id="f-examType"><option>INTERNAL</option><option>MIDTERM</option><option>FINAL</option><option>PRACTICAL</option></select>
+            </div>
+            <div class="form-group"><label>Date</label><input type="date" id="f-date" required></div>
+            <div class="form-group"><label>Semester (1-8)</label><input type="number" id="f-semester" min="1" max="8"></div>
+            <div class="form-group"><label>Academic Year</label><input type="text" id="f-academicYear" placeholder="2025-2026" required></div>
+          </div>
+          <div class="form-error" id="item-form-error"></div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('item-modal')">Cancel</button>
+        <button class="btn btn-primary" id="item-save-btn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/exams.js"></script>
+</body>
+</html>

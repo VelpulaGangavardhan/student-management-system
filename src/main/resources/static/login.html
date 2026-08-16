@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Smart Student Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+  <div class="auth-card">
+    <h1>Smart Student Management</h1>
+    <p class="subtitle">Sign in to continue</p>
+
+    <form id="login-form">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" required autocomplete="username">
+      </div>
+      <div class="form-group" style="margin-top:14px;">
+        <label for="password">Password</label>
+        <input type="password" id="password" required autocomplete="current-password">
+      </div>
+      <div class="form-error" id="login-error"></div>
+      <div id="login-success" style="color:var(--color-success); font-size:13px; margin-bottom:10px;"></div>
+      <button type="submit" class="btn btn-primary" id="login-btn">Sign In</button>
+    </form>
+
+    <p style="text-align:center; font-size:13px; margin-top:16px; color:var(--color-text-muted);">
+      Don't have an account? <a href="register.html">Create Student Account</a>
+    </p>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/layout.js"></script>
+  <script>
+    // Already logged in? Don't show the login form - go straight to the
+    // right dashboard. replace() so this "detour" through /login doesn't
+    // sit in browser history.
+    if (getToken() && getRole()) {
+      window.location.replace(dashboardUrlForRole(getRole()));
+    }
+
+    // Registration redirects here with ?registered=1 - show a friendly note.
+    if (new URLSearchParams(window.location.search).get("registered") === "1") {
+      document.getElementById("login-success").textContent =
+        "Account created successfully. Please sign in.";
+    }
+
+    document.getElementById("login-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const errorEl = document.getElementById("login-error");
+      const btn = document.getElementById("login-btn");
+      errorEl.textContent = "";
+      btn.disabled = true;
+      btn.textContent = "Signing in...";
+
+      try {
+        const result = await api.post("/auth/login", {
+          username: document.getElementById("username").value.trim(),
+          password: document.getElementById("password").value,
+        });
+        setSession(result.token, result.username, result.role);
+        window.location.href = dashboardUrlForRole(result.role);
+      } catch (err) {
+        errorEl.textContent = err.message || "Login failed";
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Sign In";
+      }
+    });
+  </script>
+</body>
+</html>

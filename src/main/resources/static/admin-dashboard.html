@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - SmartSMS</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main">
+      <header class="navbar" id="navbar"></header>
+      <main class="content" id="content">
+
+        <div class="cards-grid" id="stats-grid">
+          <div class="loading-state">Loading dashboard...</div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header"><h2>Quick links</h2></div>
+          <div class="panel-body" style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="btn btn-secondary" href="students.html">Manage Students</a>
+            <a class="btn btn-secondary" href="teachers.html">Manage Teachers</a>
+            <a class="btn btn-secondary" href="departments.html">Manage Departments</a>
+            <a class="btn btn-secondary" href="subjects.html">Manage Subjects</a>
+            <a class="btn btn-secondary" href="exams.html">Manage Exams</a>
+            <a class="btn btn-secondary" href="marks.html">Enter Marks</a>
+            <a class="btn btn-secondary" href="attendance.html">Attendance</a>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/layout.js"></script>
+  <script>
+    if (guardPage(["ADMIN"])) {
+      renderLayout("dashboard", "Admin Dashboard");
+      loadAdminDashboard();
+    }
+
+    async function loadAdminDashboard() {
+      const grid = document.getElementById("stats-grid");
+      try {
+        const d = await api.get("/dashboard/admin");
+        grid.innerHTML = `
+          ${statCard("Total Students", d.totalStudents)}
+          ${statCard("Total Teachers", d.totalTeachers)}
+          ${statCard("Departments", d.totalDepartments)}
+          ${statCard("Subjects", d.totalSubjects)}
+          ${statCard("Total Users", d.totalUsers)}
+          ${statCard("At-Risk Students", d.atRiskStudents, "danger")}
+          ${statCard("Average CGPA", d.averageCgpa.toFixed(2))}
+          ${statCard("Avg. Attendance", d.averageAttendancePercentage.toFixed(1) + "%")}
+        `;
+      } catch (err) {
+        grid.innerHTML = `<div class="empty-state">Could not load dashboard: ${escapeHtml(err.message)}</div>`;
+      }
+    }
+
+    function statCard(label, value, accent) {
+      return `<div class="stat-card ${accent ? "accent-" + accent : ""}">
+        <div class="stat-label">${label}</div>
+        <div class="stat-value">${value}</div>
+      </div>`;
+    }
+  </script>
+</body>
+</html>
