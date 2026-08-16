@@ -18,8 +18,6 @@ public interface TeacherRepository extends JpaRepository<Teacher, Long> {
 
     java.util.Optional<Teacher> findByUser_Username(String username);
 
-    java.util.Optional<Teacher> findByUser_Username(String username);
-
     @Query("SELECT t FROM Teacher t WHERE " +
            "LOWER(t.name) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
            "LOWER(t.email) LIKE LOWER(CONCAT('%', :keyword, '%'))")
