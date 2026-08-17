@@ -63,9 +63,13 @@ HTML/CSS/JavaScript frontend.
 
 ## 📸 Screenshots
 
+### 🏠 Home Page
+
+![Home Page](screenshots/HomePage.png)
+
 ### 🔑 Login Page
 
-![Login Page](screenshots/login.png)
+![Login Page](screenshots/Login.png)
 
 ### 👨‍💼 Admin Dashboard
 
@@ -78,19 +82,6 @@ HTML/CSS/JavaScript frontend.
 ### 🎓 Student Dashboard
 
 ![Student Dashboard](screenshots/student-dashboard.png)
-
-### 👨‍🎓 Student Management
-
-![Student Management](screenshots/students.png)
-
-### 📊 Student Performance
-
-![Student Performance](screenshots/performance.png)
-
-### 📅 Attendance Management
-
-![Attendance Management](screenshots/attendance.png)
-
 
 ## Features
 
