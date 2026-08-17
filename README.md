@@ -1,4 +1,24 @@
-# Smart Student Management System
+# 🎓 Smart Student Management System
+
+> A full-stack academic management platform built with **Java, Spring Boot, Spring Security, JWT, PostgreSQL, HTML, CSS, and JavaScript**.
+
+🌐 **Live Demo:**  
+https://student-management-system-dbc6.onrender.com
+---
+## 🔐 Demo Login Credentials
+
+The application provides three role-based demo accounts:
+
+| Role | Username | Password |
+|---|---|---|
+| 👨‍💼 Admin | `admin` | `Admin@123` |
+| 👨‍🏫 Teacher | `teacher1` | `Teacher@123` |
+| 🎓 Student | `student1` | `Student@123` |
+
+> **Note:** These are demo/development credentials created by the application's sample-data initializer. Do not use these credentials in a production environment.
+
+
+## 📖 Project Overview
 
 A full-stack Java Spring Boot application for managing students, teachers, departments,
 subjects, exams, marks, attendance, and rule-based student performance analysis —
@@ -16,7 +36,61 @@ HTML/CSS/JavaScript frontend.
 > it should be a relationship"). `StudentRequestDTO`/`StudentResponseDTO` now use
 > `departmentId` / `departmentName` instead of a free-text `department` field.
 
+
+### 🚀 Highlights
+
+- 🔐 JWT-based authentication & role-based authorization
+- 👨‍💼 Admin, 👨‍🏫 Teacher & 🎓 Student dashboards
+- 👨‍🎓 Student and teacher management
+- 🏢 Department and subject management
+- 📝 Examination and marks management
+- 📅 Attendance tracking
+- 📊 Results and student performance analysis
+- 🔒 BCrypt password encryption
+- 🗄️ PostgreSQL database
+- ☁️ Deployed on Render
+
+### 🛠️ Tech Stack
+
+**Backend:** Java • Spring Boot • Spring Security • JPA • Hibernate  
+**Frontend:** HTML • CSS • JavaScript  
+**Database:** PostgreSQL  
+**Authentication:** JWT • BCrypt  
+**Build Tool:** Maven  
+**Deployment:** Render
+
 ---
+
+## 📸 Screenshots
+
+### 🔑 Login Page
+
+![Login Page](screenshots/login.png)
+
+### 👨‍💼 Admin Dashboard
+
+![Admin Dashboard](screenshots/admin-dashboard.png)
+
+### 👨‍🏫 Teacher Dashboard
+
+![Teacher Dashboard](screenshots/teacher-dashboard.png)
+
+### 🎓 Student Dashboard
+
+![Student Dashboard](screenshots/student-dashboard.png)
+
+### 👨‍🎓 Student Management
+
+![Student Management](screenshots/students.png)
+
+### 📊 Student Performance
+
+![Student Performance](screenshots/performance.png)
+
+### 📅 Attendance Management
+
+![Attendance Management](screenshots/attendance.png)
+
 
 ## Features
 
