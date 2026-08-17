@@ -65,23 +65,23 @@ HTML/CSS/JavaScript frontend.
 
 ### 🏠 Home Page
 
-![Home Page](screenshots/HomePage.png)
+![Home Page](src/screenshots/HomePage.png)
 
 ### 🔑 Login Page
 
-![Login Page](screenshots/Login.png)
+![Login Page](src/screenshots/Login.png)
 
 ### 👨‍💼 Admin Dashboard
 
-![Admin Dashboard](screenshots/admin-dashboard.png)
+![Admin Dashboard](src/screenshots/admin-dashboard.png)
 
 ### 👨‍🏫 Teacher Dashboard
 
-![Teacher Dashboard](screenshots/teacher-dashboard.png)
+![Teacher Dashboard](src/screenshots/teacher-dashboard.png)
 
 ### 🎓 Student Dashboard
 
-![Student Dashboard](screenshots/student-dashboard.png)
+![Student Dashboard](src/screenshots/student-dashboard.png)
 
 ## Features
 
